@@ -191,4 +191,111 @@ class WorkPlace:
     def calc_costs(self):
         pass
 ```
-        
+
+##مدیریت محل کار
+در این سوال از شما می‌خواهیم سه کلاس معدن (Mine)، مدرسه (School) و شرکت (Company) را تعریف کنید. هر سه کلاس از کلاس محل‌ کار (WorkPlace) ارث می‌برند. برای هر کلاس یک سازنده و دو تابع calc_capacity و calc_costs را طبق قوانین زیر پیاده سازی کنید.
+
+ManageWorkPlace
+├── work_place.py
+├──  > company.py < 
+├──  > school.py < 
+├──  > mine.py < 
+
+تابع سازنده:در هر سه کلاس، تابع سازنده باید غیر از self فقط یک آرگومان name را بگیرد و ابتدا سازنده پدر (WorkPlace) را صدا کرده و سپس مقدار self.expertise را برای معدن برابر با "mine" برای مدرسه "school" و برای شرکت "company" قرار دهد.
+
+تابع calc_capacity:این تابع قرار است مقدار ظرفیت (self.capacity) را بر اساس سطح (self.level) مشخص کند.
+برای معدن فرمول زیر برقرار است:
+
+capacity=level^2
+
+برای مدرسه فرمول زیر برقرار است:
+
+capacity=⌊ sqrt(level) ⌋
+
+برای شرکت فرمول زیر برقرار است:
+
+
+capacity=level
+
+تابع calc_costs
+این تابع مقدار هزینه های ساختمان را برمی‌گرداند که بر اساس سطح (self.level) مشخص می‌شود.
+برای معدن فرمول زیر برقرار است:
+
+costs=BasePlaceCost+LevelMul×level
+
+برای مدرسه فرمول زیر برقرار است:
+
+costs=BasePlaceCost×⌊ sqrt(level) ⌋
+
+برای شرکت فرمول زیر برقرار است:
+
+costs=BasePlaceCost×level
+
+سه کلاس Mine و School و Company را در سه فایل mine.py و school.py و company.py پیاده سازی کنید.
+
+##مدیریت کارکنان
+
+در این سوال از شما می‌خواهیم سه کلاس کارگر (Worker)، معلم (Teacher) و مهندس (Engineer) را تعریف کنید. هر سه کلاس از کلاس شخص (Person) ارث می‌برند. برای هر کلاس یک سازنده و سه تابع get_price و calc_life_cost و ‍calc_income را طبق قوانین زیر پیاده سازی کنید.
+
+ساختار فایل‌های این پروژه به صورت زیر است.
+
+Manage_Employees
+├── person.py
+├──  > teacher.py < 
+├──  > worker.py < 
+├──  > engineer.py < 
+
+تابع سازنده
+
+در هر سه کلاس سازنده باید جز self دو آرگمان name و age را بگیرد و ابتدا سازنده پدر (Person) را صدا کرده و مقدار self.job را برای کارگر برابر با "worker" برای معلم "teacher" و برای مهندس "engineer" قرار دهد.
+
+تابع get_price
+
+این تابع قرار است قیمت استخدام شخص را بر اساس تخصص (self.job) و سن‌ او (self.age) حساب کرده و برگرداند.
+
+برای کارگر فرمول زیر برقرار است:
+
+price=⌊BasePrice worker × MinAge /age⌋
+
+برای معلم فرمول زیر برقرار است:
+
+price=BasePrice teacher − (age−MinAge)×AgeMul
+
+برای مهندس فرمول زیر برقرار است:
+
+price=⌊BasePrice engineer × sqrt(Min Age / age) ⌋
+
+تابع calc_life_cost
+
+این تابع مقدار مخارج زندگی شخص را برمی‌گرداند که بر اساس تخصص (self.job) و سن او (self.age) مشخص می‌شود.
+
+برای کارگر فرمول زیر برقرار است:
+
+costs=⌊BaseCost worker × (age / MinAge) ⌋
+
+برای معلم فرمول زیر برقرار است:
+
+costs=BaseCost teacher +(age−MinAge)×AgeMul
+
+برای مهندس فرمول زیر برقرار است:
+
+costs=⌊BaseCost engineer × sqrt(age/MinAge) ⌋
+
+تابع calc_income
+
+این تابع قرار است درآمد شخص را بر اساس تخصص (self.job)، سن‌ (self.age) و محل کار او (self.work_place) حساب کرده و برگرداند.
+
+برای کارگر فرمول زیر برقرار است:
+
+income=⌊BaseIncome worker,WorkPlace × MinAge/age ⌋
+
+برای معلم فرمول زیر برقرار است:
+
+income=BaseIncome teacher,WorkPlace −(age−MinAge)×AgeMul
+
+برای مهندس فرمول زیر برقرار است:
+
+income=⌊BaseIncome engineer,WorkPlace × sqrt(MinAge / age) ⌋
+
+سه کلاس Worker و Teacher و Engineer را در سه فایل worker.py و teacher.py و engineer.py پیاده سازی کنید. همچنین می‌توانید از فایل person.py نیز استفاده کنید.
+
